@@ -1,0 +1,19 @@
+{
+	"name": "sangreea",
+	"version": "1.0.0",
+	"description": "",
+	"author": "Premise WP <info@premisewp.com> by: Mario Vallejo",
+	"repository" : {
+		"type" : "git", 
+		"url" : ""
+	},
+	"devDependencies": {
+		"grunt": "^0.4.5",
+		"grunt-autoprefixer": "^3.0.0",
+		"grunt-contrib-cssmin": "^0.12.2",
+		"grunt-contrib-jshint": "^0.11.1",
+		"grunt-contrib-uglify": "^0.8.1",
+		"grunt-contrib-watch": "^0.6.1",
+		"grunt-phpdocumentor": "^0.4.1"
+	}
+}

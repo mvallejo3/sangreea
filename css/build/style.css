@@ -1,0 +1,204 @@
+/**
+ * Sangreea Main Stylesheet
+ *
+ * Table of Index
+ */
+
+/* 
+	Resets
+	
+	Inspired on -
+	http://meyerweb.com/eric/tools/css/reset/ 
+   	v2.0 | 20110126
+   	License: none (public domain)
+*/
+
+* {
+	box-sizing: border-box;
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+/*
+	Typography
+ */
+
+body {
+	font-family: 'Open Sans', Arial, sans-serif;
+}
+
+
+/*
+	Layout
+ */
+
+.container {
+	width: 90%;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+/* Admin bar */
+body.admin-bar #header {
+	margin-top: 32px;
+}
+
+
+/*
+	Header
+ */
+
+#header {
+	/*position: fixed;*/
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 999999999999999;
+}
+
+.logo {
+	max-width: 150px;
+	float: left;
+}
+
+/* The Nav */
+.nav {
+	position: relative;
+	float: right;
+}
+
+.nav-toggle {
+	float: right;
+	width: 40px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	font-size: 30px;
+}
+
+.nav-toggle-a {
+	display: block;
+	color: #FFFFFF;
+}
+
+.nav-search {
+	display: none;
+}
+
+
+/*
+	Episodes
+ */
+
+#episodes {
+	position: relative;
+	min-height: 100%;
+	width: 100%;
+}
+
+#episodes .container {
+	width: 100%;
+}
+
+article .post-video {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.premise-video {
+	width: 100%;
+	height: 100%;
+}
+
+/* hide pagination elements */
+.sgr-pagination .page-numbers {
+	display: none;
+}
+
+/* display only the pagination elements that we use */
+#episodes .sgr-pagination .page-numbers.next,
+#episodes .sgr-pagination .page-numbers.prev {
+	display: block;
+	position: absolute;
+	top: 50%;
+	z-index: 99999999;
+	width: 40px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	margin: -20px 0 0 0;
+	font-size: 40px;
+	color: #444;
+	transition: all 2s 0s ease;
+	text-shadow: 0 0 5px #ccc;
+}
+
+#episodes .sgr-pagination .page-numbers.next {
+	right: 5px;
+}
+
+#episodes .sgr-pagination .page-numbers.prev {
+	left: 5px;
+}
+
+#episodes .sgr-pagination .page-numbers.next:hover, 
+#episodes .sgr-pagination .page-numbers.prev:hover {
+	transform: scale(1.8,1.8);
+	margin: -20px 20px 0;
+	text-shadow: 0 0 15px #aaa;
+}
+
+
+/*
+	Participate
+ */
+
+#participate {
+	padding: 80px 0;
+}
