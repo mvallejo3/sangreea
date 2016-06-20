@@ -81,6 +81,7 @@ get_header();
 					array(
 						'type' => 'submit', 
 						'value' => 'Submit', 
+						'wrapper_class' => 'premise-align-center',  
 					),
 				);
 
