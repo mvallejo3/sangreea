@@ -165,7 +165,6 @@ function sgr_front_page( $query ) {
 	if ( $query->is_home() && $query->is_main_query() ) {
         $query->set( 'cat', '24' );
         $query->set( 'posts_per_page', '1' );
-        // var_dump($query);
     }
 }
 

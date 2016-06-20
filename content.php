@@ -26,7 +26,8 @@
 		<script type="text/javascript">
 			(function($){
 				$( document ).ready( function() {
-					var ytPlayer = $( '#sgr-video-<?php echo esc_attr( $post->ID ); ?>').premiseLoadYouTube( {
+					var videoInfo = $( '.post-<?php echo esc_attr( $post->ID ); ?> .post-info' ),
+					ytPlayer      = $( '#sgr-video-<?php echo esc_attr( $post->ID ); ?>').premiseLoadYouTube( {
 						width: '100%',
 						height: '100%', 
 						playerVars: {
@@ -37,8 +38,7 @@
 						events: {
 							onStateChange: sgrYTReady
 						}
-					} ),
-					videoInfo = $( '.post-<?php echo esc_attr( $post->ID ); ?> .post-info' );
+					} );
 
 					function sgrYTReady( e ) {
 						// Hide / show the titile when the video is playing
