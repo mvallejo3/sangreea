@@ -26,18 +26,18 @@
 				
 				<div class="logo">
 					<a href="<?php echo esc_url( site_url() ); ?>" class="logo-anchor">
-						<img src="<?php echo esc_url( get_template_directory_uri() . '/img/logo-white.png' ); ?>" class="premise-responsive premise-inline-block">
+						<img src="<?php echo esc_url( get_template_directory_uri() . '/img/logo.png' ); ?>" class="premise-responsive premise-inline-block">
 					</a>
 				</div>
 
 				<div class="nav">
 					<div class="nav-toggle">
 						<a href="javascript:void(0);" id="nav-toggle-a">
-							<i class="fa fa-bars"></i>
+							<i class="fa fa-search"></i>
 						</a>
 					</div>
 					<div class="nav-search">
-						<input type="text" id="nav-search-input" name="nav_search" placeholder="Start typing">
+						<input type="text" id="nav-search-input" name="nav_search" placeholder="Find episodes, recipes, and more">
 					</div>
 					<div class="nav-ui"></div>
 					<div class="nav-overlay"></div>
@@ -46,3 +46,5 @@
 			</div>
 
 		</header>
+
+		<div id="sangreea-content">

@@ -212,6 +212,71 @@ function sgr_get_video_id( $video = '' ) {
 
 
 
+function sgr_nav_search() {
+	$action = ( isset( $_POST['action'] ) && ! empty( $_POST['action'] ) ) ? (string) sanitize_text_field( $_POST['action'] ) : '';
+	$search = ( isset( $_POST['search'] ) && ! empty( $_POST['search'] ) ) ? (string) sanitize_text_field( $_POST['search'] ) : '';
+
+	if ( '' !== $action && '' !== $search ) {
+		new SGR_Nav_Search( $search );
+	}
+	die();
+}
+
+
+
+/**
+* The nav search class searches the database for posts based on a keyword string
+*/
+class SGR_Nav_Search {
+
+	public $s = '';
+
+
+
+	public $query = NULL;
+
+
+
+	function __construct( $search ) {
+		$this->s = $search;
+
+		$this->query = new WP_Query( array( 's' => $this->s ) );
+		wp_reset_query(); // reset query immediately, we already saved the object reference
+
+		$this->loop();
+	}
+
+
+
+	public function loop() {
+		$results = $this->query->get_posts();
+		
+		if ( $this->query->have_posts() ) {
+			$this->load();
+		}
+	}
+
+
+
+
+	public function load() {
+		?>
+		<div <?php post_class( 'nav-results' ); ?>>
+			<div class="container">
+				<div class="premise-row">
+					<?php while( $this->query->have_posts() ) {
+						$this->query->the_post();
+						get_template_part( 'content', 'loop' );
+					} ?>
+				</div>
+			</div>
+		</div>
+		<?php 
+	}
+}
+
+
+
 
 
 
@@ -243,6 +308,9 @@ if ( function_exists( 'add_action' ) ) {
 		add_action( 'load-post.php',     'sgr_load_video_mb_class' );
 	    add_action( 'load-post-new.php', 'sgr_load_video_mb_class' );
 	}
+
+	add_action( 'wp_ajax_sgr_nav_search', 'sgr_nav_search' );
+	add_action( 'wp_ajax_nopriv_sgr_nav_search', 'sgr_nav_search' );
 }
 
 

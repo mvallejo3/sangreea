@@ -7,7 +7,7 @@
 
 ?>
 
-
+	</div> <!-- Close the .sangreea-dynamic tag -->
 
 <?php wp_footer(); ?>
 </body>
