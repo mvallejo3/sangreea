@@ -2,7 +2,7 @@
 /**
  * Content Loop Template
  *
- * @package [level 1]\[level 2]\[etc.]
+ * @package sangreea
  */
 
 ?>
@@ -17,10 +17,16 @@
 		</div>
 	<?php endif; ?>
 
-	<div class="pot-title">
+	<div class="post-title">
 		<a href="<?php the_permalink(); ?>">
 			<h3><?php the_title(); ?></h3>
 		</a>
 	</div>
+
+	<?php if ( 'post' == get_post_type() ) : ?>
+		<div class="post-meta">
+			<!-- Add post meta -->
+		</div>
+	<?php endif; ?>
 	
 </article>

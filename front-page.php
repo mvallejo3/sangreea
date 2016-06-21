@@ -7,37 +7,9 @@
 
 get_header();
 
+get_template_part( 'loop', 'episodes' );
+
 ?>
-
-<section id="episodes">
-	
-	<div class="container">
-		
-		<?php 
-		/**
-		 * The loop. Check if we have posts and display them.
-		 */
-		if ( have_posts() ) :
-
-			while ( have_posts() ) : the_post();
-				
-				$video_url = premise_get_value( 'sgr_video_url', 'post' ) ? premise_get_value( 'sgr_video_url', 'post' ) : get_post_meta( $post->ID, 'pego_post_video_url', true );
-
-				if ( $video_url ) get_template_part( 'content' );
-
-			endwhile;
-
-			sgr_pagination();
-			
-		else :
-
-			get_template_part( 'content', 'none' );
-
-		endif;
-		?>
-
-	</div>
-</section>
 
 <section id="participate">
 	

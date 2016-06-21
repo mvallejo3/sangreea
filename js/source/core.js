@@ -33,7 +33,7 @@
 				s = $this.val();
 
 				// if string is at least 2 characters long
-				if ( 2 <= s.length ) {
+				if ( 1 <= s.length ) {
 					doSearch( s );
 				}
 				else {
@@ -55,8 +55,7 @@
 			if ( '' == s ) return false;
 
 			navOverlay.addClass( 'loading' );
-			sgrContent.fadeOut( 'fast' );
-
+			
 			// construct data object
 			var data = {
 				action: 'sgr_nav_search', // the ajax hook name
@@ -65,7 +64,7 @@
 
 			// call the ajax hook and pass data
 			$.post( '/wp-admin/admin-ajax.php', data, function( resp ) {
-				sgrContent.html( resp ).fadeIn( 'fast' );
+				sgrContent.html( resp );
 				navOverlay.removeClass( 'loading' );
 			} );
 

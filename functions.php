@@ -7,7 +7,7 @@
  * @package sangreea
  */
 
-
+show_admin_bar( false );
 
 // Require Premise WP if it does not exist.
 if ( ! class_exists( 'Premise_WP' ) ) {
@@ -249,8 +249,6 @@ class SGR_Nav_Search {
 
 
 	public function loop() {
-		$results = $this->query->get_posts();
-		
 		if ( $this->query->have_posts() ) {
 			$this->load();
 		}
