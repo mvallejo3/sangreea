@@ -9,7 +9,7 @@ get_header();
 
 ?>
 
-<section id="">
+<section id="home">
 	
 	<div class="container">
 		

@@ -211,6 +211,54 @@ function sgr_get_video_id( $video = '' ) {
 
 
 
+function sgr_post_format() {
+	switch ( get_post_format() ) {
+		case 'video':
+			$format = 'episode';
+			break;
+
+		default :
+			$format = '';
+	}
+
+	return $format;
+}
+
+
+
+
+function sgr_participant_form() {
+	$_form = array();
+	parse_str( $_POST['participantForm'], $_form );
+
+	$form = $_form['sgr_participant'];
+
+	$_check  = ( isset( $form['_check'] ) )  ? $form['_check']                         : '';
+	$name    = ( isset( $form['name'] ) )    ? sanitize_text_field( $form['name'] )    : '';
+	$email   = ( isset( $form['email'] ) )   ? sanitize_email( $form['email'] )        : '';
+	$message = ( isset( $form['message'] ) ) ? sanitize_text_field( $form['message'] ) : '';
+
+	// check for spam. This field must be empty 
+	if ( ! empty( $_check ) ) die( 'Captha!' );
+
+	if ( ! empty( $name ) && ! empty( $email ) ) {
+
+		$to = 'mario@vallgroupcom';
+		$subject = 'New Participant Request For Sangreea';
+		$body = $name . ' ' . $email;
+		
+		if ( wp_mail( $to, $subject, $body ) ) {
+			echo '<p>Your email has been sent. Thank You!</p>';
+		}
+		else {
+			echo '<p>There was an issue sending your email, please try again later.</p>';
+		}
+	}
+	die();
+}
+
+
+
 
 function sgr_nav_search() {
 	$action = ( isset( $_POST['action'] ) && ! empty( $_POST['action'] ) ) ? (string) sanitize_text_field( $_POST['action'] ) : '';
@@ -240,7 +288,7 @@ class SGR_Nav_Search {
 	function __construct( $search ) {
 		$this->s = $search;
 
-		$this->query = new WP_Query( array( 's' => $this->s ) );
+		$this->query = new WP_Query( array( 's' => $this->s, 'post_status' => 'publish' ) );
 		wp_reset_query(); // reset query immediately, we already saved the object reference
 
 		$this->loop();
@@ -253,7 +301,6 @@ class SGR_Nav_Search {
 			$this->load();
 		}
 	}
-
 
 
 
@@ -309,6 +356,9 @@ if ( function_exists( 'add_action' ) ) {
 
 	add_action( 'wp_ajax_sgr_nav_search', 'sgr_nav_search' );
 	add_action( 'wp_ajax_nopriv_sgr_nav_search', 'sgr_nav_search' );
+
+	add_action( 'wp_ajax_sgr_participant_form', 'sgr_participant_form' );
+	add_action( 'wp_ajax_nopriv_sgr_participant_form', 'sgr_participant_form' );
 }
 
 

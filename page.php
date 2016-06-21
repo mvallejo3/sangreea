@@ -1,6 +1,6 @@
 <?php 
 /**
- * Single Post Template
+ * Page Template
  *
  * @package sangreea
  */
@@ -9,7 +9,7 @@ get_header();
 
 ?>
 
-<section id="single">
+<section id="page">
 	
 	<div class="container">
 		
@@ -24,8 +24,8 @@ get_header();
 				<div class="post-title">
 					<h1><?php the_title(); ?></h1>
 				</div>
-
-				<?php get_template_part( 'content', sgr_post_format() );
+				
+				<?php get_template_part( 'content' );
 
 			endwhile;
 

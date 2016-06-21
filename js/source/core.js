@@ -7,10 +7,9 @@
 		navToggle    = $( '#nav-toggle-a' ), 
 		navSearch    = $( '#nav-search-input' ), 
 		navOverlay   = $( '.nav-overlay' ), 
-		sgrContent   = $( '#sangreea-content' );
-
-		// var nav = $( '.nav' );
-		// var navUI = $( '.nav-ui' );
+		sgrContent   = $( '#sangreea-content' ),
+		participateForm = $( '.participate-form-container' ), 
+		particiapteBtn = $( '#participate-form-btn' );
 
 		// Set the height for the episodes to cover the screen
 		episodes.height( windowHeight );
@@ -48,6 +47,9 @@
 			} );
 		} );
 
+		// bind participate form button
+		particiapteBtn.click( submitParticipant );
+
 		// preform the search and return results
 		function doSearch( s ) {
 			// check for s 
@@ -66,6 +68,20 @@
 			$.post( '/wp-admin/admin-ajax.php', data, function( resp ) {
 				sgrContent.html( resp );
 				navOverlay.removeClass( 'loading' );
+			} );
+
+			return false;
+		}
+
+		// submit articipate form 
+		function submitParticipant() {
+			var data = {
+				action: 'sgr_participant_form', 
+				participantForm: $( '.participate-form' ).serialize(), 
+			}
+
+			$.post( '/wp-admin/admin-ajax.php', data, function( resp ) {
+				participateForm.html( resp );
 			} );
 
 			return false;
