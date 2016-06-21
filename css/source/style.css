@@ -117,6 +117,22 @@ article ol li {
 	margin-left: 20px;
 }
 
+/* Custom */
+
+p.success,
+p.error {
+	max-width: 500px;
+	margin: 40px auto;
+}
+
+p.success {
+	color: #008000;
+}
+
+p.error {
+	color: #E60000;
+}
+
 
 /*
 	Layout

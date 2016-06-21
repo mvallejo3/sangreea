@@ -248,10 +248,10 @@ function sgr_participant_form() {
 		$body = $name . ' ' . $email;
 		
 		if ( wp_mail( $to, $subject, $body ) ) {
-			echo '<p>Your email has been sent. Thank You!</p>';
+			echo '<p class="success">Your email has been sent. Thank You!</p>';
 		}
 		else {
-			echo '<p>There was an issue sending your email, please try again later.</p>';
+			echo '<p class="error">There was an issue sending your email, please try again later.</p>';
 		}
 	}
 	die();
