@@ -15,27 +15,39 @@
 		episodes.height( windowHeight );
 		
 		// activate the nav search
-		navToggle.click( function() {
+		navToggle.click( sgrInitNav );
+
+		// bind participate form button
+		particiapteBtn.click( submitParticipant );
+
+		var initialPage = sgrContent[0].innerHTML;
+		// initiate nav search UI
+		function sgrInitNav() {
+			resetNav();
+
 			header.addClass( 'nav-active' );
 			navSearch.focus();
 
 			// bind the search field
 			navSearch.keyup( function( e ) {
 
+				// if enter key is pressed
 				if ( e.keyCode == 13 ) {
 					header.removeClass( 'nav-active' );
 					navSearch.blur();
 					return false;
 				}
 
+				// reference our variables
 				var $this = $( this ), 
 				s = $this.val();
 
-				// if string is at least 2 characters long
+				// if string is at least 1 character long
 				if ( 1 <= s.length ) {
 					doSearch( s );
 				}
 				else {
+					sgrContent.html( initialPage );
 					navOverlay.removeClass( 'loading' );
 				}
 			} );
@@ -45,23 +57,26 @@
 				header.removeClass( 'nav-active' );
 				return false;
 			} );
-		} );
+		}
 
-		// bind participate form button
-		particiapteBtn.click( submitParticipant );
+		// reset the nav. does not do nothing yet
+		function resetNav() {
+			return true;
+		}
 
 		// preform the search and return results
 		function doSearch( s ) {
-			// check for s 
 			s = s || '';
+			
+			// check for s 
 			if ( '' == s ) return false;
 
 			navOverlay.addClass( 'loading' );
 			
 			// construct data object
 			var data = {
-				action: 'sgr_nav_search', // the ajax hook name
-				search: s, // what the user searched for
+				action: 'sgr_nav_search', 	// the ajax hook name
+				search: s, 					// what the user searched for
 			}
 
 			// call the ajax hook and pass data
