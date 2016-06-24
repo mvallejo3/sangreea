@@ -7,7 +7,10 @@
  * @package sangreea
  */
 
+
+//  Hide the admin bar in the front end
 show_admin_bar( false );
+
 
 // Require Premise WP if it does not exist.
 if ( ! class_exists( 'Premise_WP' ) ) {
@@ -33,7 +36,6 @@ if ( ! function_exists( 'sgr_theme_setup' ) ) {
 }
 
 
-
 // Add theme supprt
 if ( function_exists( 'add_theme_support' ) ) {
 	// Add Menu Support.
@@ -42,7 +44,6 @@ if ( function_exists( 'add_theme_support' ) ) {
 	// Add Thumbnail Theme Support.
 	add_theme_support( 'post-thumbnails' );
 	add_theme_support( 'post-formats', array( 'video' ) );
-
 
 	// custom logo in customizer
 	add_theme_support( 'custom-logo', array(
@@ -56,7 +57,6 @@ if ( function_exists( 'add_theme_support' ) ) {
 }
 
 
-
 // Enqueue styles and scripts 
 if ( ! function_exists( 'sgr_enqueue_scripts' ) ) {
 	/**
@@ -66,7 +66,6 @@ if ( ! function_exists( 'sgr_enqueue_scripts' ) ) {
 	 */
 	function sgr_enqueue_scripts() {
 		wp_register_style( 'sgr_css', get_template_directory_uri() . '/css/style.min.css' );
-
 		wp_register_script( 'sgr_js', get_template_directory_uri() . '/js/script.min.js', array( 'jquery' ) );
 
 		if ( ! is_admin() ) {
@@ -75,7 +74,6 @@ if ( ! function_exists( 'sgr_enqueue_scripts' ) ) {
 		}
 	}
 }
-
 
 
 // output the main nav 
@@ -110,7 +108,6 @@ if ( ! function_exists( 'sgr_main_nav' ) ) {
 }
 
 
-
 // Register menu locations 
 if ( ! function_exists( 'sgr_register_menu' ) ) {
 	/**
@@ -127,7 +124,6 @@ if ( ! function_exists( 'sgr_register_menu' ) ) {
 		);
 	}
 }
-
 
 
 if ( ! function_exists( 'sgr_pagination' ) ) {
@@ -160,8 +156,13 @@ if ( ! function_exists( 'sgr_pagination' ) ) {
 }
 
 
-
-function sgr_front_page( $query ) {
+/**
+ * alter the front page query, to display only episodes
+ * 
+ * @param  object $query the main query
+ * @return void
+ */
+function sgr_front_page_query( $query ) {
 	if ( $query->is_home() && $query->is_main_query() ) {
         $query->set( 'cat', '24' );
         $query->set( 'posts_per_page', '1' );
@@ -169,14 +170,22 @@ function sgr_front_page( $query ) {
 }
 
 
-
-
+/**
+ * register and load the video meta box for posts
+ * 
+ * @return void 
+ */
 function sgr_load_video_mb_class() {
 	new SGR_Video_MB;
 }
 
 
-
+/**
+ * return the video ID if a youtube url is passed
+ * 
+ * @param  string $video the url string or video id
+ * @return string        the video id
+ */
 function sgr_get_video_id( $video = '' ) {
 	if ( '' == $video ) return false;
 
@@ -210,7 +219,11 @@ function sgr_get_video_id( $video = '' ) {
 }
 
 
-
+/**
+ * get the post content template based on the post format
+ * 
+ * @return string the content template that should be used
+ */
 function sgr_post_format() {
 	switch ( get_post_format() ) {
 		case 'video':
@@ -225,8 +238,11 @@ function sgr_post_format() {
 }
 
 
-
-
+/**
+ * Process participant form
+ * 
+ * @return string confimation fo form submission
+ */
 function sgr_participant_form() {
 	$_form = array();
 	parse_str( $_POST['participantForm'], $_form );
@@ -258,8 +274,11 @@ function sgr_participant_form() {
 }
 
 
-
-
+/**
+ * Perform nav search
+ * 
+ * @return string html with search results loop
+ */
 function sgr_nav_search() {
 	$action = ( isset( $_POST['action'] ) && ! empty( $_POST['action'] ) ) ? (string) sanitize_text_field( $_POST['action'] ) : '';
 	$search = ( isset( $_POST['search'] ) && ! empty( $_POST['search'] ) ) ? (string) sanitize_text_field( $_POST['search'] ) : '';
@@ -271,20 +290,30 @@ function sgr_nav_search() {
 }
 
 
-
 /**
 * The nav search class searches the database for posts based on a keyword string
 */
 class SGR_Nav_Search {
 
+	/**
+	 * the search string submitted by the user
+	 * 
+	 * @var string
+	 */
 	public $s = '';
 
 
-
+	/**
+	 * the query object
+	 * 
+	 * @var null
+	 */
 	public $query = NULL;
 
 
-
+	/**
+	 * Construct our object
+	 */
 	function __construct( $search ) {
 		$this->s = $search;
 
@@ -295,7 +324,11 @@ class SGR_Nav_Search {
 	}
 
 
-
+	/**
+	 * Loop through search results
+	 * 
+	 * @return string html for loop results
+	 */
 	public function loop() {
 		if ( $this->query->have_posts() ) {
 			$this->load();
@@ -303,7 +336,11 @@ class SGR_Nav_Search {
 	}
 
 
-
+	/**
+	 * load each result post from results
+	 * 
+	 * @return string html for loop results
+	 */
 	public function load() {
 		?>
 		<div <?php post_class( 'nav-results' ); ?>>
@@ -321,16 +358,10 @@ class SGR_Nav_Search {
 }
 
 
-
-
-
-
-
 /*
 	Includes
  */
 include 'classes/class-video-meta-box.php';
-
 
 
 /*
@@ -347,7 +378,7 @@ if ( function_exists( 'add_action' ) ) {
 	add_action( 'wp_enqueue_scripts', 'sgr_enqueue_scripts' );
 	
 	// Filter front page posts
-	add_action( 'pre_get_posts', 'sgr_front_page' );
+	add_action( 'pre_get_posts', 'sgr_front_page_query' );
 
 	if ( is_admin() ) {
 		add_action( 'load-post.php',     'sgr_load_video_mb_class' );
@@ -369,4 +400,3 @@ if ( function_exists( 'add_filter' ) ) {
 }
 
 
-# pego_post_video_url
