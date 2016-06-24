@@ -13,7 +13,7 @@ get_header();
 	
 	<div class="sgr-instagram-feed">
 		
-		<?php echo do_shortcode( '[instagram-feed]' ); ?>
+		<?php echo do_shortcode( '[instagram-feed id="25755138" hashtag="#sangreea"]' ); ?>
 
 	</div>
 
