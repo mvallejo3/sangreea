@@ -26,6 +26,11 @@ get_header();
 				</div>
 
 				<?php get_template_part( 'content', sgr_post_format() );
+				
+				// display comments if we comments are open and we have at least one comment
+				if ( comments_open() || get_comments_number() ) {
+					get_template_part( 'comments' );
+				}
 
 			endwhile;
 

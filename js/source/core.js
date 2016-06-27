@@ -8,6 +8,7 @@
 		navSearch    = $( '#nav-search-input' ), 
 		navOverlay   = $( '.nav-overlay' ), 
 		sgrContent   = $( '#sangreea-content' ),
+		participate  = $( '#participate' ), 
 		participateForm = $( '.participate-form-container' ), 
 		particiapteBtn = $( '#participate-form-btn' );
 
@@ -19,6 +20,13 @@
 
 		// bind participate form button
 		particiapteBtn.click( submitParticipant );
+
+		participate.premiseScroll( {
+			onScroll: function() {
+				var $this = $( this );
+				( ! $this.is( '.visible' ) ) ? $this.addClass( 'visible' ) : false;
+			}
+		} );
 
 		var initialPage = sgrContent[0].innerHTML;
 		// initiate nav search UI

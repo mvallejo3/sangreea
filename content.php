@@ -11,9 +11,7 @@
 	
 	<?php if ( has_post_thumbnail() ) : ?>
 		<div class="post-thumbnail">
-			<a href="<?php the_permalink(); ?>">
-				<?php the_post_thumbnail( 'medium', array( 'class' => 'premise-responsive' ) ); ?>
-			</a>
+			<?php the_post_thumbnail( 'medium', array( 'class' => 'premise-responsive' ) ); ?>
 		</div>
 	<?php endif; ?>
 
@@ -21,4 +19,7 @@
 		<?php the_content(); ?>
 	</div>
 	
+	<div class="related-content">
+		<!-- add related content here -->
+	</div>
 </article>

@@ -1,7 +1,8 @@
 
 @media screen and (min-width: 600px) {
+	/* float thumbnail right */
 	.post-thumbnail {
-		float: left;
-		padding-right: 20px;
+		float: right;
+		padding-left: 20px;
 	}
 }
