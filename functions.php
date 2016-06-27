@@ -32,9 +32,20 @@ if ( ! function_exists( 'sgr_theme_setup' ) ) {
 		flush_rewrite_rules();
 
 		# perform other tasks here
+		sgr_yt_sync();
+	}
+
+	/**
+	 * schedule youtube pull from pplaylist
+	 * 
+	 * @return [type] [description]
+	 */
+	function sgr_yt_sync() {
+	    if (! wp_next_scheduled ( 'sgr_sync_youtube' )) {
+			wp_schedule_event( time(), 'hourly', 'sgr_sync_youtube' );
+	    }
 	}
 }
-
 
 // Add theme supprt
 if ( function_exists( 'add_theme_support' ) ) {
@@ -358,6 +369,12 @@ class SGR_Nav_Search {
 }
 
 
+
+function sgr_pull_youtube_playlist() {
+	wp_mail( 'mario@vallgroup.com', 'cron test', 'this is test was sent at ' . date('Y-m-d H:i:s') );
+}
+
+
 /*
 	Includes
  */
@@ -390,6 +407,8 @@ if ( function_exists( 'add_action' ) ) {
 
 	add_action( 'wp_ajax_sgr_participant_form', 'sgr_participant_form' );
 	add_action( 'wp_ajax_nopriv_sgr_participant_form', 'sgr_participant_form' );
+
+	add_action( 'sgr_sync_youtube', 'sgr_pull_youtube_playlist' );
 }
 
 
@@ -397,6 +416,7 @@ if ( function_exists( 'add_action' ) ) {
 	Filters
  */
 if ( function_exists( 'add_filter' ) ) {
+
 }
 
 
