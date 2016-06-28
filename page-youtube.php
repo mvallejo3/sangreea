@@ -21,10 +21,7 @@ END;
 // and submitted the form. Otherwise, the page displays the form above.
 if ($_GET['q'] && $_GET['maxResults']) {
   // Call set_include_path() as needed to point to your client library.
-set_include_path( dirname( __FILE__ ) . '/includes/google-api-php-client-2.0.0/src/' );
-require_once 'Google/Client.php';
-require_once 'Google/Service.php';
-require_once 'includes/youtube.php';
+  get_template_part( 'includes/google', 'client' );
 
   /*
    * Set $DEVELOPER_KEY to the "API key" value from the "Access" tab of the
