@@ -20,7 +20,7 @@ if ( post_password_required() ) {
 
 <div id="comments" class="comments-area sgr-section-border-top">
 
-	<?php var_dump( have_comments() );
+	<?php 
 	if ( have_comments() ) : ?>
 		<h2 class="comments-title">
 			<?php
