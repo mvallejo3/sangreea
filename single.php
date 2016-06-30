@@ -25,16 +25,18 @@ get_header();
 					<h1><?php the_title(); ?></h1>
 				</div>
 
-				<?php get_template_part( 'content', sgr_post_format() );
+				<?php get_template_part( 'content' );
 				
 				// display comments if we comments are open and we have at least one comment
 				if ( comments_open() || get_comments_number() ) {
-					get_template_part( 'comments' );
+					comments_template();
 				}
 
 			endwhile;
 
 			sgr_pagination();
+
+			get_template_part( 'loop', 'related' );
 			
 		else :
 

@@ -375,6 +375,40 @@ function sgr_pull_youtube_playlist() {
 }
 
 
+
+function sgr_load_recent_episodes() {
+	
+	if ( isset( $_POST['action'] ) && 'sgr_load_recent_episodes' == $_POST['action'] ) {
+
+		$query = new WP_Query( array(
+			'tax_query' => array(
+		        array(                
+		            'taxonomy' => 'post_format',
+		            'field' => 'slug',
+		            'terms' => array( 
+		                'post-format-video'
+		            ),
+		            'operator' => 'IN'
+		        )
+		    )
+		) );
+
+		if ( $query->have_posts() ) {
+			while ( $query->have_posts() ) {
+				$query->the_post();
+				get_template_part( 'content', 'loop' );
+			}
+		}
+		wp_reset_query();
+	}
+	// the request was not submitted from our form. Stop it.
+	else {
+		die( 'Gotcha!' );
+	}
+	die();
+}
+
+
 /*
 	Includes
  */
@@ -409,6 +443,9 @@ if ( function_exists( 'add_action' ) ) {
 	add_action( 'wp_ajax_nopriv_sgr_participant_form', 'sgr_participant_form' );
 
 	add_action( 'sgr_sync_youtube', 'sgr_pull_youtube_playlist' );
+
+	add_action( 'wp_ajax_sgr_load_recent_episodes', 'sgr_load_recent_episodes' );
+	add_action( 'wp_ajax_nopriv_sgr_load_recent_episodes', 'sgr_load_recent_episodes' );
 }
 
 

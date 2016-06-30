@@ -10,7 +10,8 @@
 		sgrContent   = $( '#sangreea-content' ),
 		participate  = $( '#participate' ), 
 		participateForm = $( '.participate-form-container' ), 
-		particiapteBtn = $( '#participate-form-btn' );
+		particiapteBtn = $( '#participate-form-btn' ),
+		loadEpisdoes = $( '#load-recent-episodes-a' );
 
 		// Set the height for the episodes to cover the screen
 		episodes.height( windowHeight );
@@ -27,6 +28,9 @@
 				( ! $this.is( '.visible' ) ) ? $this.addClass( 'visible' ) : false;
 			}
 		} );
+
+		// bind load more episodes ajax functinoality if button exists
+		( loadEpisdoes.length ) ? sgrLoadEpisodes() : false;
 
 		var initialPage = sgrContent[0].innerHTML;
 		// initiate nav search UI
@@ -108,6 +112,29 @@
 			} );
 
 			return false;
+		}
+
+		// Load recent episodes via ajax
+		function sgrLoadEpisodes() {
+			
+			var clicked = false;
+
+			loadEpisdoes.click( function(){
+
+				loadEpisdoes.addClass( 'loading' );
+				
+				var data = {
+					action: 'sgr_load_recent_episodes'
+				}
+
+				// perform the ajax request
+				$.post( '/wp-admin/admin-ajax.php', data, function( resp ) {
+					$( '#sgr-load-episodes' ).html( resp );
+
+					loadEpisdoes.fadeOut( 'slow' ).remove();
+				} );
+			} );
+
 		}
 	});
 }(jQuery));

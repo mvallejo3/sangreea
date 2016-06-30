@@ -18,9 +18,10 @@ if ( post_password_required() ) {
 }
 ?>
 
-<div id="comments" class="comments-area">
+<div id="comments" class="comments-area sgr-section-border-top">
 
-	<?php if ( have_comments() ) : ?>
+	<?php var_dump( have_comments() );
+	if ( have_comments() ) : ?>
 		<h2 class="comments-title">
 			<?php
 				$comments_number = get_comments_number();
@@ -51,7 +52,7 @@ if ( post_password_required() ) {
 				wp_list_comments( array(
 					'style'       => 'ol',
 					'short_ping'  => true,
-					'avatar_size' => 42,
+					'avatar_size' => 100,
 				) );
 			?>
 		</ol><!-- .comment-list -->
