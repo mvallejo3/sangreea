@@ -563,3 +563,46 @@ body.admin-bar #header {
 	margin-bottom: 40px;
 	padding-bottom: 20px;
 }
+
+.comment-list .comment .comment-body {
+	position: relative;
+	padding-bottom: 30px;
+	min-height: 140px; /* !important - 100px img size plus padding 30px plus 10px additional margin*/
+	height: auto;
+}
+
+.comment-list .comment .comment-body p {
+	font-style: italic;
+	color: #444;
+}
+
+.comment-list .comment .comment-body .comment-meta, 
+.comment-list .comment .comment-body .reply {
+ 	position: absolute;
+	bottom: 0;
+	line-height: 30px;
+ }
+
+.comment-list .comment .comment-body .comment-meta {
+	right: 0;
+}
+
+.comment-list .comment .comment-body .reply {
+	left: 0;
+}
+
+.comment-list .comment .comment-body .comment-author {
+	margin-bottom: 15px;
+}
+
+.comment-list .comment .comment-body .comment-author img {
+	float: left;
+	margin-right: 20px;
+}
+
+.comment-list .comment .comment-body .comment-author cite.fn, 
+.comment-list .comment .comment-body .comment-author .says {
+	font-style: italic;
+	color: #000;
+	/*font-size: 90%;*/
+}
