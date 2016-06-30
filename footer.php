@@ -9,8 +9,6 @@
 
 	</div> <!-- Close the .sangreea-content tag -->
 
-<?php wp_footer(); ?>
-
 	<footer id="footer">
 		<div class="container">
 			<div class="premise-align-center copyright">
@@ -18,5 +16,8 @@
 			</div>
 		</div>
 	</footer>
+	
+<?php wp_footer(); ?>
+
 </body>
 </html>
