@@ -5,11 +5,9 @@
  * @package sangreea
  */
 
-get_header();
-
 ?>
 
-<section id="instagram">
+<section id="instagram" class="sgr-section">
 	
 	<div class="sgr-instagram-feed">
 		
@@ -18,5 +16,3 @@ get_header();
 	</div>
 
 </section>
-
-<?php get_footer(); ?>

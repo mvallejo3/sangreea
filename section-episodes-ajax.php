@@ -11,7 +11,7 @@
 
 ?>
 
-<section id="load-recent-episodes">
+<section id="load-recent-episodes" class="sgr-section">
 	<div class="container">
 
 		<div id="sgr-load-episodes">

@@ -12,11 +12,11 @@ get_header();
 	
 	<?php get_template_part( 'loop', 'episodes' );
 
-	get_template_part( 'page', 'participate' );
+	get_template_part( 'section', 'participate' );
 
 	get_template_part( 'section', 'episodes-ajax' );
 
-	get_template_part( 'page', 'instagram' ); ?>
+	get_template_part( 'section', 'instagram' ); ?>
 	
 </section>
 

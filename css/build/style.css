@@ -171,7 +171,8 @@ p.error {
 }
 
 body:not(.home) #sangreea-content {
-	margin-top: 100px;
+	margin-top: 160px;
+	margin-bottom: 100px;
 }
 
 /* Admin bar */
@@ -182,6 +183,10 @@ body.admin-bar #header {
 .sgr-section-border-top {
 	margin-top: 100px;
 	padding-top: 60px;
+}
+
+.sgr-section {
+	padding: 80px 0;
 }
 
 
@@ -426,7 +431,6 @@ body.admin-bar #header {
  */
 
 #participate {
-	padding: 80px 0;
 	opacity: 0;
 	visibility: hidden;
 	transition: opacity 1s 1s ease;
@@ -449,7 +453,9 @@ body.admin-bar #header {
  */
 
 #load-recent-episodes {
-	padding: 100px 0;
+	border-top: 1px solid #f6f6f6;
+	border-bottom: 1px solid #f6f6f6;
+	background-color: #FFF;
 }
 
 #load-recent-episodes-a {
@@ -479,6 +485,10 @@ body.admin-bar #header {
 	animation-iteration-count: infinite;
 	animation-duration: 2s;
 	animation-timing-function: linear;
+}
+
+#sgr-load-episodes {
+	background-color: #FFFFFF;
 }
 
 
@@ -581,7 +591,7 @@ body.admin-bar #header {
 
 .comment-list .comment .comment-body {
 	position: relative;
-	padding-bottom: 30px;
+	padding-bottom: 60px;
 	min-height: 140px; /* !important - 100px img size plus padding 30px plus 10px additional margin*/
 	height: auto;
 }

@@ -5,11 +5,9 @@
  * @package sangreea
  */
 
-get_header();
-
 ?>
 
-<section id="participate">
+<section id="participate" class="sgr-section">
 	
 	<div class="container">
 		
@@ -65,5 +63,3 @@ get_header();
 	</div>
 
 </section>
-
-<?php get_footer(); ?>
